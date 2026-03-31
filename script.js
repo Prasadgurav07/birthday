@@ -45,7 +45,7 @@ const photoFiles = [
   "1000141477.jpg.jpeg",
   "1000142031.jpg.jpeg",
   "1000142385.png",
-  "1000213150.png",
+  "1000213150.png.jpeg",
   "1000214609.jpg.jpeg",
   "1000214612.jpg.jpeg",
   "1000214615.jpg.jpeg",
