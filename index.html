@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Birthday Wish Trail</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="ambient ambient-rose"></div>
+  <div class="ambient ambient-sky"></div>
+  <div class="ambient ambient-gold"></div>
+
+  <div class="app-shell">
+    <header class="masthead reveal">
+      <div class="masthead-copy">
+        <p class="overline">Birthday Wish Trail</p>
+        <h1>Step-by-step birthday pages that open into warm wishes, sweet memories, and one bright finale.</h1>
+      </div>
+      <button class="chip-button" id="celebrateNow" type="button">Celebrate Now</button>
+    </header>
+
+    <main class="experience">
+      <aside class="companion-card reveal">
+        <p class="card-label">For Someone Special</p>
+        <h2>Happy Birthday</h2>
+        <p class="companion-copy">
+          This little website moves like a storybook, letting each wish arrive one
+          page at a time instead of showing everything all at once.
+        </p>
+
+        <div class="companion-badges">
+          <span>Five guided pages</span>
+          <span>Photo-ready layout</span>
+          <span>Final celebration</span>
+        </div>
+
+        <div class="portrait-pocket">
+          <img src="images/test.png" alt="Birthday portrait placeholder">
+         
+        </div>
+
+        <div class="wish-meter">
+          <div class="wish-meter-copy">
+            <span>Pages opened</span>
+            <strong id="progressCount">1 / 5</strong>
+          </div>
+          <div class="meter-track">
+            <span id="meterFill"></span>
+          </div>
+        </div>
+
+        <p class="floating-note" id="floatingNote"></p>
+      </aside>
+
+      <section class="story-panel reveal">
+        <div class="story-topbar">
+          <div>
+            <p class="page-kicker" id="pageEyebrow"></p>
+            <p class="page-nav-title" id="pageNavTitle"></p>
+          </div>
+          <nav class="step-dots" id="stepDots" aria-label="Birthday story pages"></nav>
+        </div>
+
+        <article class="page-card" id="pageCard">
+          <div class="page-copy">
+            <h2 id="pageTitle"></h2>
+            <p class="page-subtitle" id="pageSubtitle"></p>
+            <p class="page-body" id="pageBody"></p>
+            <ul class="highlight-list" id="pageHighlights"></ul>
+
+            <blockquote class="quote-card">
+              <p id="pageQuote"></p>
+            </blockquote>
+          </div>
+
+          <div class="page-media">
+            <div class="image-frame">
+              <img id="pageImage" src="images/hero-photo.svg" alt="Birthday page image">
+            </div>
+
+            <div class="spark-card">
+              <span>Little Spark</span>
+              <p id="pageSpark"></p>
+            </div>
+          </div>
+        </article>
+
+        <footer class="controls">
+          <button class="ghost-button" id="prevStep" type="button">Previous Page</button>
+          <p class="page-footer" id="pageFooter"></p>
+          <button class="primary-button" id="nextStep" type="button">Next Page</button>
+        </footer>
+      </section>
+    </main>
+
+    <section class="memory-ribbon reveal" aria-label="Extra birthday notes">
+      <article class="memory-tile">
+        <span>Warmth</span>
+        <h3>Kindness that always shows up</h3>
+        <p>A lovely birthday message begins by noticing the gentle ways someone makes life better.</p>
+      </article>
+
+      <article class="memory-tile">
+        <span>Laughter</span>
+        <h3>Moments that still make you smile</h3>
+        <p>The best wishes feel personal, especially when they carry the glow of shared memories.</p>
+      </article>
+
+      <article class="memory-tile">
+        <span>Dreams</span>
+        <h3>Hope for the year ahead</h3>
+        <p>Every final page should leave behind courage, joy, and a reason to look forward.</p>
+      </article>
+    </section>
+  </div>
+
+  <div class="toast" id="birthdayToast" role="status" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

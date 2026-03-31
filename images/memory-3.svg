@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f5d3de"/>
+      <stop offset="1" stop-color="#dbcdf4"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="1000" rx="40" fill="url(#bg)"/>
+  <rect x="82" y="88" width="636" height="824" rx="32" fill="#fff9f5" opacity="0.68"/>
+  <circle cx="400" cy="320" r="128" fill="#fff9f5"/>
+  <path d="M206 732c74-136 172-214 286-214 112 0 206 78 302 214" fill="#fff9f5"/>
+  <path d="M230 270c54 36 110 52 170 52 74 0 134-18 198-58" fill="none" stroke="#efc2cb" stroke-width="14" stroke-linecap="round"/>
+  <rect x="210" y="768" width="380" height="92" rx="22" fill="#fff9f5"/>
+  <text x="400" y="822" text-anchor="middle" font-family="Verdana" font-size="34" fill="#9a6287">Add Photo 3</text>
+</svg>

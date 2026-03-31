@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#cfe6ff"/>
+      <stop offset="1" stop-color="#fff1df"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="1000" rx="40" fill="url(#bg)"/>
+  <rect x="90" y="96" width="620" height="812" rx="32" fill="#fdf8f3" opacity="0.7"/>
+  <rect x="160" y="180" width="480" height="250" rx="28" fill="#fefaf6"/>
+  <circle cx="270" cy="610" r="100" fill="#fefaf6"/>
+  <circle cx="525" cy="610" r="100" fill="#fefaf6"/>
+  <rect x="214" y="770" width="372" height="92" rx="22" fill="#fdf8f3"/>
+  <text x="400" y="824" text-anchor="middle" font-family="Verdana" font-size="34" fill="#6687aa">Add Photo 2</text>
+</svg>
