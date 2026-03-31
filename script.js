@@ -20,7 +20,7 @@ const storyPages = [
     quote: "May your birthday begin with peace, glow with joy, and end with gratitude.",
     spark: "Take a happy breath and step into the celebration.",
     footer: "Start here, then move page by page through the wishes.",
-    image: "images/hero-photo.svg",
+    image: "images/test.png",
     imageAlt: "Birthday cover placeholder image",
     toast: "The birthday story is open. Let the wishes begin."
   },
