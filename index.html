@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Birthday Wish Trail</title>
+  <title>Happiest Birthday Dear Siddhi</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -14,29 +14,38 @@
   <div class="app-shell">
     <header class="masthead reveal">
       <div class="masthead-copy">
-        <p class="overline">Birthday Wish Trail</p>
-        <h1>Step-by-step birthday pages that open into warm wishes, sweet memories, and one bright finale.</h1>
+        <p class="overline">Siddhi's Birthday Story</p>
+        <h1>Happiest Birthday Dear Siddhi 💖🎂</h1>
+        <p class="hero-message">A page full of love, wishes, hearts, and birthday joy made especially for you. 🎉🥳</p>
+        <div class="emoji-row" aria-hidden="true">
+          <span>💖</span>
+          <span>🎂</span>
+          <span>🎉</span>
+          <span>🥳</span>
+          <span>🎈</span>
+        </div>
       </div>
-      <button class="chip-button" id="celebrateNow" type="button">Celebrate Now</button>
+      <button class="chip-button" id="celebrateNow" type="button">Celebrate Siddhi 🎉</button>
     </header>
 
     <main class="experience">
       <aside class="companion-card reveal">
-        <p class="card-label">For Someone Special</p>
-        <h2>Happy Birthday</h2>
+        <p class="card-label">For Siddhi 💖</p>
+        <h2>Happiest Birthday Dear</h2>
+        <p class="signature-wish">Siddhi, this little celebration is made just for you. 💖🎂</p>
         <p class="companion-copy">
-          This little website moves like a storybook, letting each wish arrive one
-          page at a time instead of showing everything all at once.
+          This birthday website moves like a storybook, mixing personal wishes,
+          sweet photo moments, and cheerful emoji magic to celebrate Siddhi with love.
         </p>
 
         <div class="companion-badges">
-          <span>Five guided pages</span>
-          <span>Photo-ready layout</span>
-          <span>Final celebration</span>
+          <span>💖 Five guided pages</span>
+          <span>🎂 Photo-ready layout</span>
+          <span>🎉 Final celebration</span>
         </div>
 
         <div class="portrait-pocket">
-          <img src="images/test.png" alt="Birthday portrait placeholder">
+          <img src="images/1000001590.jpg.jpeg" alt="Birthday portrait placeholder">
          
         </div>
 
@@ -76,7 +85,7 @@
 
           <div class="page-media">
             <div class="image-frame">
-              <img id="pageImage" src="images/test.png" alt="Birthday page image">
+              <img id="pageImage" src="images/1000001590.jpg.jpeg" alt="Birthday page image">
             </div>
 
             <div class="spark-card">
@@ -96,26 +105,78 @@
 
     <section class="memory-ribbon reveal" aria-label="Extra birthday notes">
       <article class="memory-tile">
-        <span>Warmth</span>
-        <h3>Kindness that always shows up</h3>
-        <p>A lovely birthday message begins by noticing the gentle ways someone makes life better.</p>
+        <span>💖 Warmth</span>
+        <h3>Siddhi's kindness makes everything brighter</h3>
+        <p>A beautiful birthday wish starts by noticing the sweet and caring ways Siddhi makes life better.</p>
       </article>
 
       <article class="memory-tile">
-        <span>Laughter</span>
-        <h3>Moments that still make you smile</h3>
-        <p>The best wishes feel personal, especially when they carry the glow of shared memories.</p>
+        <span>🎉 Laughter</span>
+        <h3>Moments that still bring a smile</h3>
+        <p>The best wishes feel personal when they carry the glow of shared memories and happy laughter.</p>
       </article>
 
       <article class="memory-tile">
-        <span>Dreams</span>
-        <h3>Hope for the year ahead</h3>
-        <p>Every final page should leave behind courage, joy, and a reason to look forward.</p>
+        <span>✨ Dreams</span>
+        <h3>Hope, love, and lovely surprises ahead</h3>
+        <p>Every final page should leave Siddhi with courage, joy, and many reasons to look forward.</p>
       </article>
+    </section>
+
+    <section class="photo-gallery reveal" id="photoGallery" aria-label="Birthday photo gallery">
+      <div class="gallery-header">
+        <div>
+          <p class="overline">Siddhi's Photo Slideshow</p>
+          <h2>Birthday memories, hearts, and happy moments moving in one beautiful slideshow. 💖📸</h2>
+        </div>
+        <p class="gallery-note">
+          This slideshow now uses every real photo currently inside the <code>images</code>
+          folder. Use the arrows or thumbnails to move through the memories, or click
+          the large photo to open it bigger.
+        </p>
+      </div>
+
+      <div class="slideshow-shell" id="slideshowShell">
+        <div class="slideshow-stage">
+          <button class="slide-arrow" id="slidePrev" type="button" aria-label="Previous slide">‹</button>
+          <button class="slide-image-button" id="slideOpen" type="button" aria-label="Open current photo">
+            <img id="slideshowImage" src="" alt="Birthday slideshow photo">
+          </button>
+          <button class="slide-arrow" id="slideNext" type="button" aria-label="Next slide">›</button>
+        </div>
+
+        <div class="slideshow-meta">
+          <div>
+            <strong id="slideTitle"></strong>
+            <p id="slideDescription"></p>
+          </div>
+          <span id="slideCount"></span>
+        </div>
+
+        <div class="slideshow-progress">
+          <span id="slideProgress"></span>
+        </div>
+
+        <div class="slide-thumbs" id="slideThumbs"></div>
+      </div>
     </section>
   </div>
 
   <div class="toast" id="birthdayToast" role="status" aria-live="polite"></div>
+  <div class="lightbox" id="galleryLightbox" role="dialog" aria-modal="true" aria-hidden="true">
+    <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Close gallery">Close</button>
+    <button class="lightbox-nav lightbox-prev" id="lightboxPrev" type="button" aria-label="Previous photo">Previous</button>
+
+    <figure class="lightbox-figure">
+      <img id="lightboxImage" src="images/1000001590.jpg.jpeg" alt="Selected birthday memory">
+      <figcaption class="lightbox-caption">
+        <strong id="lightboxTitle"></strong>
+        <span id="lightboxCount"></span>
+      </figcaption>
+    </figure>
+
+    <button class="lightbox-nav lightbox-next" id="lightboxNext" type="button" aria-label="Next photo">Next</button>
+  </div>
 
   <script src="script.js"></script>
 </body>
