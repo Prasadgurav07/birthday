@@ -197,6 +197,7 @@ const lightboxPrev = document.getElementById("lightboxPrev");
 const lightboxNext = document.getElementById("lightboxNext");
 
 const slideIntervalMs = 3600;
+const thumbPlaceholder = `data:image/svg+xml;charset=UTF-8,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><rect width="120" height="120" fill="#f5e8dc"/><circle cx="60" cy="60" r="18" fill="#efb66e" opacity=".55"/></svg>')}`;
 
 let floatingIndex = 0;
 let currentStep = 0;
@@ -204,6 +205,11 @@ let currentSlideIndex = 0;
 let lightboxIndex = 0;
 let toastTimer;
 let slideTimer;
+let thumbObserver;
+
+const loadedThumbIndexes = new Set();
+const preloadedSlideSources = new Set();
+const slideThumbButtons = [];
 
 function updateFloatingNote() {
   floatingNote.textContent = floatingMessages[floatingIndex];
@@ -265,23 +271,96 @@ function animatePageCard() {
   pageCard.classList.add("page-enter");
 }
 
+function ensureThumbLoaded(index) {
+  if (index < 0 || index >= galleryImages.length || loadedThumbIndexes.has(index)) {
+    return;
+  }
+
+  const thumbButton = slideThumbButtons[index];
+  if (!thumbButton) {
+    return;
+  }
+
+  const thumbImage = thumbButton.querySelector("img");
+  thumbImage.src = galleryImages[index].src;
+  loadedThumbIndexes.add(index);
+}
+
+function preloadNearbySlides(index) {
+  [-1, 0, 1].forEach((offset) => {
+    const normalizedIndex = (index + offset + galleryImages.length) % galleryImages.length;
+    const source = galleryImages[normalizedIndex].src;
+
+    if (preloadedSlideSources.has(source)) {
+      return;
+    }
+
+    const preloadImage = new Image();
+    preloadImage.decoding = "async";
+    preloadImage.src = source;
+    preloadedSlideSources.add(source);
+  });
+}
+
+function updateThumbState() {
+  slideThumbButtons.forEach((button, index) => {
+    button.classList.toggle("active", index === currentSlideIndex);
+  });
+
+  const activeThumb = slideThumbButtons[currentSlideIndex];
+  if (activeThumb) {
+    activeThumb.scrollIntoView({ block: "nearest", inline: "center" });
+  }
+}
+
 function renderSlideThumbs() {
+  slideThumbButtons.length = 0;
   slideThumbs.innerHTML = "";
+
+  if (thumbObserver) {
+    thumbObserver.disconnect();
+  }
+
+  thumbObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+          return;
+        }
+
+        const index = Number(entry.target.dataset.thumbIndex);
+        ensureThumbLoaded(index);
+        thumbObserver.unobserve(entry.target);
+      });
+    },
+    {
+      root: slideThumbs,
+      rootMargin: "120px",
+      threshold: 0.01
+    }
+  );
 
   galleryImages.forEach((photo, index) => {
     const thumb = document.createElement("button");
     thumb.type = "button";
     thumb.className = `slide-thumb${index === currentSlideIndex ? " active" : ""}`;
+    thumb.dataset.thumbIndex = String(index);
     thumb.setAttribute("aria-label", `Show ${photo.title}`);
-    thumb.innerHTML = `<img src="${photo.src}" alt="${photo.title} thumbnail">`;
+    thumb.innerHTML = `<img src="${thumbPlaceholder}" alt="${photo.title} thumbnail" loading="lazy" decoding="async">`;
 
     thumb.addEventListener("click", () => {
       renderSlide(index);
       startSlideshow();
     });
 
+    slideThumbButtons.push(thumb);
     slideThumbs.appendChild(thumb);
+    thumbObserver.observe(thumb);
   });
+
+  for (let index = 0; index < Math.min(5, galleryImages.length); index += 1) {
+    ensureThumbLoaded(index);
+  }
 }
 
 function renderSlide(index) {
@@ -295,7 +374,11 @@ function renderSlide(index) {
   slideCount.textContent = `${currentSlideIndex + 1} / ${galleryImages.length}`;
   slideProgress.style.width = `${((currentSlideIndex + 1) / galleryImages.length) * 100}%`;
 
-  renderSlideThumbs();
+  ensureThumbLoaded(currentSlideIndex);
+  ensureThumbLoaded((currentSlideIndex + 1) % galleryImages.length);
+  ensureThumbLoaded((currentSlideIndex - 1 + galleryImages.length) % galleryImages.length);
+  preloadNearbySlides(currentSlideIndex);
+  updateThumbState();
 }
 
 function moveSlide(direction) {
@@ -481,6 +564,7 @@ document.addEventListener("keydown", (event) => {
 
 updateFloatingNote();
 window.setInterval(updateFloatingNote, 3200);
+renderSlideThumbs();
 renderSlide(0);
 startSlideshow();
 renderPage(0);

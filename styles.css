@@ -672,18 +672,32 @@ button {
 }
 
 .slide-thumbs {
-  display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+  display: flex;
   gap: 0.75rem;
+  overflow-x: auto;
+  padding-bottom: 0.35rem;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+}
+
+.slide-thumbs::-webkit-scrollbar {
+  height: 0.55rem;
+}
+
+.slide-thumbs::-webkit-scrollbar-thumb {
+  background: rgba(197, 92, 117, 0.28);
+  border-radius: 999px;
 }
 
 .slide-thumb {
+  flex: 0 0 98px;
   padding: 0.3rem;
   border: 1px solid rgba(40, 29, 41, 0.08);
   border-radius: 1rem;
   background: rgba(255, 255, 255, 0.88);
   overflow: hidden;
   cursor: pointer;
+  scroll-snap-align: start;
 }
 
 .slide-thumb img {
