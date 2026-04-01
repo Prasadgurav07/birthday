@@ -592,16 +592,37 @@ button {
   color: var(--berry);
 }
 
+.slideshow-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.slideshow-helper {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.slide-toggle {
+  white-space: nowrap;
+}
+
 .slideshow-shell {
   display: grid;
   gap: 1rem;
+  width: min(100%, 900px);
+  margin: 0 auto;
 }
 
 .slideshow-stage {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-columns: auto minmax(0, 760px) auto;
   align-items: center;
   gap: 0.9rem;
+  justify-content: center;
 }
 
 .slide-arrow,
@@ -611,27 +632,27 @@ button {
 }
 
 .slide-arrow {
-  width: 3.2rem;
-  height: 3.2rem;
+  width: 2.85rem;
+  height: 2.85rem;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.86);
   color: var(--berry);
-  box-shadow: 0 18px 40px rgba(78, 44, 59, 0.12);
-  font-size: 1.8rem;
+  box-shadow: 0 14px 30px rgba(78, 44, 59, 0.1);
+  font-size: 1.5rem;
   line-height: 1;
 }
 
 .slide-image-button {
-  padding: 0.85rem;
+  padding: 0.65rem;
   border-radius: 1.6rem;
   background:
     linear-gradient(160deg, rgba(42, 31, 46, 0.92), rgba(99, 42, 63, 0.82)),
     url("images/banner-bg.svg") center/cover no-repeat;
-  box-shadow: 0 24px 46px rgba(62, 34, 49, 0.22);
+  box-shadow: 0 18px 34px rgba(62, 34, 49, 0.16);
 }
 
 .slide-image-button img {
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 5 / 3;
   object-fit: cover;
   border-radius: 1.1rem;
 }
@@ -933,6 +954,11 @@ button {
 
   .gallery-header {
     grid-template-columns: 1fr;
+  }
+
+  .slideshow-topbar {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .slideshow-stage {

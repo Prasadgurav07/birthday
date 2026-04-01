@@ -188,6 +188,7 @@ const slideThumbs = document.getElementById("slideThumbs");
 const slidePrev = document.getElementById("slidePrev");
 const slideNext = document.getElementById("slideNext");
 const slideOpen = document.getElementById("slideOpen");
+const slideToggle = document.getElementById("slideToggle");
 const galleryLightbox = document.getElementById("galleryLightbox");
 const lightboxImage = document.getElementById("lightboxImage");
 const lightboxTitle = document.getElementById("lightboxTitle");
@@ -206,6 +207,7 @@ let lightboxIndex = 0;
 let toastTimer;
 let slideTimer;
 let thumbObserver;
+let isSlideshowPlaying = false;
 
 const loadedThumbIndexes = new Set();
 const preloadedSlideSources = new Set();
@@ -350,7 +352,6 @@ function renderSlideThumbs() {
 
     thumb.addEventListener("click", () => {
       renderSlide(index);
-      startSlideshow();
     });
 
     slideThumbButtons.push(thumb);
@@ -387,10 +388,16 @@ function moveSlide(direction) {
 
 function stopSlideshow() {
   window.clearInterval(slideTimer);
+  isSlideshowPlaying = false;
+  slideToggle.textContent = "Play Slideshow";
+  slideToggle.setAttribute("aria-pressed", "false");
 }
 
 function startSlideshow() {
   stopSlideshow();
+  isSlideshowPlaying = true;
+  slideToggle.textContent = "Pause Slideshow";
+  slideToggle.setAttribute("aria-pressed", "true");
   slideTimer = window.setInterval(() => {
     moveSlide(1);
   }, slideIntervalMs);
@@ -407,6 +414,7 @@ function updateLightbox(index) {
 }
 
 function openLightbox(index) {
+  stopSlideshow();
   updateLightbox(index);
   galleryLightbox.classList.add("open");
   galleryLightbox.setAttribute("aria-hidden", "false");
@@ -476,23 +484,22 @@ celebrateNow.addEventListener("click", () => {
 
 slidePrev.addEventListener("click", () => {
   moveSlide(-1);
-  startSlideshow();
 });
 
 slideNext.addEventListener("click", () => {
   moveSlide(1);
-  startSlideshow();
 });
 
 slideOpen.addEventListener("click", () => {
   openLightbox(currentSlideIndex);
 });
 
-slideshowShell.addEventListener("mouseenter", () => {
-  stopSlideshow();
-});
+slideToggle.addEventListener("click", () => {
+  if (isSlideshowPlaying) {
+    stopSlideshow();
+    return;
+  }
 
-slideshowShell.addEventListener("mouseleave", () => {
   startSlideshow();
 });
 
@@ -566,5 +573,5 @@ updateFloatingNote();
 window.setInterval(updateFloatingNote, 3200);
 renderSlideThumbs();
 renderSlide(0);
-startSlideshow();
+stopSlideshow();
 renderPage(0);
